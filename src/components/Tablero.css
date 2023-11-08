@@ -1,0 +1,12 @@
+.grid {
+    display: grid;
+    grid-template-columns: 200px 200px 200px;
+    grid-gap: 0px;
+}
+
+
+Casilla {
+    border: 1px #6d597a solid;
+    height: 200px;
+
+}
