@@ -5,8 +5,12 @@
 }
 
 
-Casilla {
+.Casilla {
     border: 1px #6d597a solid;
     height: 200px;
+    width: 200px;
+    font-size: 100px;
+    background-color: #f7dba7;
+    color: #fafafa;
 
 }
