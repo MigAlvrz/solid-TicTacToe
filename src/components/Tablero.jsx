@@ -49,6 +49,12 @@ const resPosibles = [
             setGanador(value => casillas()[a])
         }
     })
+    console.log(ganador());
+    console.log(casillas());
+    if (!casillas().some(el => el === null) && ganador() === null){
+        setGanador(value => "empate")
+        console.log(ganador());
+    }
  }
 
  function Tablero() {
@@ -58,7 +64,12 @@ const resPosibles = [
     return (
         <>
             <h1 class="test">Tres en raya</h1>            
-                <Show when={ganador()}>
+                <Show when={ganador() && ganador()!=="empate"}
+                    fallback={
+                        <Show when={ganador()}>
+                            <p>Empate!</p>
+                        </Show>
+                    }>
                     <p>{ganador()} ha ganado la partida!</p>
                 </Show>
                 <Show when={!gameOn() || ganador()}>
