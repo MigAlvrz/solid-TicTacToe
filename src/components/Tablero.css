@@ -1,3 +1,17 @@
+:root {
+    --primary: #c5d6e6;
+    --secondary: #333333;
+    --tertiary: #a8bece;
+    --quaternary: #b8b8b8;
+    --quinary: #ffffff;
+  }
+  
+  body {
+    background-color: var(--primary);
+    color: var(--secondary);
+    margin: 1%, 1%, 1%, 1%;
+  }
+
 .grid {
     display: grid;
     grid-template-columns: 200px 200px 200px;
@@ -12,5 +26,27 @@
     font-size: 100px;
     background-color: #f7dba7;
     color: #fafafa;
-
 }
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    background-color: #6d859d;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+    border-radius: 10px;
+    margin-bottom: 2%;
+  }
+  
+  .button:hover {
+    background-color: #8097ad;
+  }
+  
+  .button:focus {
+    outline: none;
+  }

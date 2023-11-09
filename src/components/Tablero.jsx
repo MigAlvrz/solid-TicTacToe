@@ -1,10 +1,10 @@
-import { For, createSignal } from "solid-js";
+import { For, Show, createSignal } from "solid-js";
 import Casilla from "./Casilla";
 import './Tablero.css'
 
 const [casillas, setCasillas] = createSignal(Array(9).fill(null));
 const [isXTurn, setIsXTurn] = createSignal(false);
-const [ganador, setGanador] = createSignal();
+const [ganador, setGanador] = createSignal(null);
 const [gameOn, setGameOn] = createSignal(true);
 
 const resPosibles = [
@@ -19,10 +19,9 @@ const resPosibles = [
   ];
 
   const jugarTurno = (id) => {
-    if(!casillas()[id]) {
+    if(!casillas()[id] && !ganador()) {
         casillas()[id] = isXTurn() ? "X" : "O"
         setIsXTurn(!isXTurn());
-        console.log(casillas());
         calcGanador()
         return casillas()[id]
     }
@@ -43,8 +42,12 @@ const resPosibles = [
     resPosibles.map((e) => {
         const [a, b, c] = e
         if (
-            false
-        ) {}
+            casillas()[a] && 
+            casillas()[a] === casillas()[b] &&
+            casillas()[a] === casillas()[c]
+        ) {
+            setGanador(value => casillas()[a])
+        }
     })
  }
 
@@ -54,16 +57,21 @@ const resPosibles = [
 
     return (
         <>
-            <h1 class="test">Tres en raya</h1>
-            <button onClick={nuevoJuego}>Nuevo juego</button>
+            <h1 class="test">Tres en raya</h1>            
+                <Show when={ganador()}>
+                    <p>{ganador()} ha ganado la partida!</p>
+                </Show>
+                <Show when={!gameOn() || ganador()}>
+                    <button class="button" onClick={nuevoJuego}>{ganador() ? "volver a jugar" : "nuevo juego"}</button>
+                </Show>
             <div class="grid">
-                { gameOn() &&
+                <Show when={gameOn()}>
                     <For each={casillas()} >
                         {
                             (cas, i) => <Casilla jugarTurno={() => jugarTurno(i())} />
                         }
                     </For>
-                }
+                </Show>
             </div>
         </>
     );
