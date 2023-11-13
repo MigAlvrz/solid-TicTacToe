@@ -63,26 +63,31 @@ const resPosibles = [
 
     return (
         <>
-            <h1 class="test">Tres en raya</h1>            
+            <div class="container">
+                    <h1>Tres en raya</h1>            
+
+
+                <div class="grid">
+                    <Show when={gameOn()}>
+                        <For each={casillas()} >
+                            {
+                                (cas, i) => <Casilla jugarTurno={() => jugarTurno(i())} />
+                            }
+                        </For>
+                    </Show>
+                </div>
                 <Show when={ganador() && ganador()!=="empate"}
-                    fallback={
-                        <Show when={ganador()}>
-                            <p>Empate!</p>
-                        </Show>
-                    }>
-                    <p>{ganador()} ha ganado la partida!</p>
-                </Show>
-                <Show when={!gameOn() || ganador()}>
-                    <button class="button" onClick={nuevoJuego}>{ganador() ? "volver a jugar" : "nuevo juego"}</button>
-                </Show>
-            <div class="grid">
-                <Show when={gameOn()}>
-                    <For each={casillas()} >
-                        {
-                            (cas, i) => <Casilla jugarTurno={() => jugarTurno(i())} />
-                        }
-                    </For>
-                </Show>
+                        fallback={
+                            <Show when={ganador()}>
+                                <p>Empate!</p>
+                            </Show>
+                        }>
+                        <p>{ganador()} ha ganado la partida!</p>
+                    </Show>
+                    <Show when={!gameOn() || ganador()}>
+                        <button class="button" onClick={nuevoJuego}>{ganador() ? "volver a jugar" : "nuevo juego"}</button>
+                    </Show>
+
             </div>
         </>
     );

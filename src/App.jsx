@@ -5,7 +5,6 @@ function App() {
   return (
     <>
     <div class={styles.App}>
-      Hola mundo!
     </div>
     <Tablero />
     </>

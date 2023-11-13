@@ -9,8 +9,17 @@
   body {
     background-color: var(--primary);
     color: var(--secondary);
-    margin: 1%, 1%, 1%, 1%;
   }
+
+.container {
+    margin: 3%;
+    display: flex;
+    justify-content: center;
+    max-width: 75%;
+    flex-direction: column;
+    align-items: center;
+}
+
 
 .grid {
     display: grid;
